@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://www.99bill.com/gatewayapi/services/gatewayRefundQuery" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://gatewayrefundquery.dto.domain.seashell.bill99.com" xmlns:impl="http://www.99bill.com/gatewayapi/services/gatewayRefundQuery" targetNamespace="http://www.99bill.com/gatewayapi/services/gatewayRefundQuery" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://gatewayrefundquery.dto.domain.seashell.bill99.com">
+      <xsd:import namespace="http://www.99bill.com/gatewayapi/services/gatewayRefundQuery" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="GatewayRefundQueryRequest">
+        <xsd:sequence>
+          <xsd:element name="ROrderId" nillable="true" type="soapenc:string" />
+          <xsd:element name="customerBatchId" nillable="true" type="soapenc:string" />
+          <xsd:element name="endDate" nillable="true" type="soapenc:string" />
+          <xsd:element name="lastupdateEndDate" nillable="true" type="soapenc:string" />
+          <xsd:element name="lastupdateStartDate" nillable="true" type="soapenc:string" />
+          <xsd:element name="merchantAcctId" nillable="true" type="soapenc:string" />
+          <xsd:element name="orderId" nillable="true" type="soapenc:string" />
+          <xsd:element name="requestPage" nillable="true" type="soapenc:string" />
+          <xsd:element name="seqId" nillable="true" type="soapenc:string" />
+          <xsd:element name="signMsg" nillable="true" type="soapenc:string" />
+          <xsd:element name="signType" nillable="true" type="soapenc:string" />
+          <xsd:element name="startDate" nillable="true" type="soapenc:string" />
+          <xsd:element name="status" nillable="true" type="soapenc:string" />
+          <xsd:element name="version" nillable="true" type="soapenc:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GatewayRefundQueryResultDto">
+        <xsd:sequence>
+          <xsd:element name="ROrderId" nillable="true" type="soapenc:string" />
+          <xsd:element name="dealOtherName" nillable="true" type="soapenc:string" />
+          <xsd:element name="failReason" nillable="true" type="soapenc:string" />
+          <xsd:element name="lastUpdateTime" nillable="true" type="soapenc:string" />
+          <xsd:element name="orderAmout" nillable="true" type="soapenc:string" />
+          <xsd:element name="orderId" nillable="true" type="soapenc:string" />
+          <xsd:element name="orderTime" nillable="true" type="soapenc:string" />
+          <xsd:element name="ownerFee" nillable="true" type="soapenc:string" />
+          <xsd:element name="payTypeDesc" nillable="true" type="soapenc:string" />
+          <xsd:element name="sequenceId" nillable="true" type="soapenc:string" />
+          <xsd:element name="signInfo" nillable="true" type="soapenc:string" />
+          <xsd:element name="status" nillable="true" type="soapenc:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GatewayRefundQueryResponse">
+        <xsd:sequence>
+          <xsd:element name="currentPage" nillable="true" type="soapenc:string" />
+          <xsd:element name="errCode" nillable="true" type="soapenc:string" />
+          <xsd:element name="merchantAcctId" nillable="true" type="soapenc:string" />
+          <xsd:element name="pageCount" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="recordCount" type="xsd:int" />
+          <xsd:element name="results" nillable="true" type="impl:ArrayOf_tns1_GatewayRefundQueryResultDto" />
+          <xsd:element name="signMsg" nillable="true" type="soapenc:string" />
+          <xsd:element name="signType" nillable="true" type="soapenc:string" />
+          <xsd:element name="version" nillable="true" type="soapenc:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.99bill.com/gatewayapi/services/gatewayRefundQuery">
+      <xsd:import namespace="http://gatewayrefundquery.dto.domain.seashell.bill99.com" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOf_tns1_GatewayRefundQueryResultDto">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:GatewayRefundQueryResultDto[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="queryRequest">
+    <wsdl:part name="request" type="tns1:GatewayRefundQueryRequest" />
+  </wsdl:message>
+  <wsdl:message name="queryResponse">
+    <wsdl:part name="queryReturn" type="tns1:GatewayRefundQueryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GatewayRefundQuery">
+    <wsdl:operation name="query" parameterOrder="request">
+      <wsdl:input name="queryRequest" message="impl:queryRequest" />
+      <wsdl:output name="queryResponse" message="impl:queryResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="gatewayRefundQuerySoapBinding" type="impl:GatewayRefundQuery">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="query">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="queryRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.seashell.bill99.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="queryResponse">
+        <wsdlsoap:body use="encoded" namespace="http://www.99bill.com/gatewayapi/services/gatewayRefundQuery" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GatewayRefundQueryService">
+    <wsdl:port name="gatewayRefundQuery" binding="impl:gatewayRefundQuerySoapBinding">
+      <wsdlsoap:address location="https://www.99bill.com/gatewayapi/services/gatewayRefundQuery" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

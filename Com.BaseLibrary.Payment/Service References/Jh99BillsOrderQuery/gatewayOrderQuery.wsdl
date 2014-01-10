@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://www.99bill.com/gatewayapi/services/gatewayOrderQuery" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://gatewayquery.dto.domain.seashell.bill99.com" xmlns:impl="http://www.99bill.com/gatewayapi/services/gatewayOrderQuery" targetNamespace="http://www.99bill.com/gatewayapi/services/gatewayOrderQuery" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://gatewayquery.dto.domain.seashell.bill99.com">
+      <xsd:import namespace="http://www.99bill.com/gatewayapi/services/gatewayOrderQuery" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="GatewayOrderQueryRequest">
+        <xsd:sequence>
+          <xsd:element name="endTime" nillable="true" type="soapenc:string" />
+          <xsd:element name="inputCharset" nillable="true" type="soapenc:string" />
+          <xsd:element name="merchantAcctId" nillable="true" type="soapenc:string" />
+          <xsd:element name="orderId" nillable="true" type="soapenc:string" />
+          <xsd:element name="queryMode" type="xsd:int" />
+          <xsd:element name="queryType" type="xsd:int" />
+          <xsd:element name="requestPage" nillable="true" type="soapenc:string" />
+          <xsd:element name="signMsg" nillable="true" type="soapenc:string" />
+          <xsd:element name="signType" type="xsd:int" />
+          <xsd:element name="startTime" nillable="true" type="soapenc:string" />
+          <xsd:element name="version" nillable="true" type="soapenc:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GatewayOrderDetail">
+        <xsd:sequence>
+          <xsd:element name="dealId" nillable="true" type="soapenc:string" />
+          <xsd:element name="dealTime" nillable="true" type="soapenc:string" />
+          <xsd:element name="fee" type="xsd:long" />
+          <xsd:element name="orderAmount" type="xsd:long" />
+          <xsd:element name="orderId" nillable="true" type="soapenc:string" />
+          <xsd:element name="orderTime" nillable="true" type="soapenc:string" />
+          <xsd:element name="payAmount" type="xsd:long" />
+          <xsd:element name="payResult" nillable="true" type="soapenc:string" />
+          <xsd:element name="payType" nillable="true" type="soapenc:string" />
+          <xsd:element name="signInfo" nillable="true" type="soapenc:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GatewayOrderQueryResponse">
+        <xsd:sequence>
+          <xsd:element name="currentPage" nillable="true" type="soapenc:string" />
+          <xsd:element name="errCode" nillable="true" type="soapenc:string" />
+          <xsd:element name="merchantAcctId" nillable="true" type="soapenc:string" />
+          <xsd:element name="orders" nillable="true" type="impl:ArrayOf_tns1_GatewayOrderDetail" />
+          <xsd:element name="pageCount" nillable="true" type="soapenc:string" />
+          <xsd:element name="pageSize" nillable="true" type="soapenc:string" />
+          <xsd:element name="recordCount" nillable="true" type="soapenc:string" />
+          <xsd:element name="signMsg" nillable="true" type="soapenc:string" />
+          <xsd:element name="signType" type="xsd:int" />
+          <xsd:element name="version" nillable="true" type="soapenc:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.99bill.com/gatewayapi/services/gatewayOrderQuery">
+      <xsd:import namespace="http://gatewayquery.dto.domain.seashell.bill99.com" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOf_tns1_GatewayOrderDetail">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:GatewayOrderDetail[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="gatewayOrderQueryRequest">
+    <wsdl:part name="request" type="tns1:GatewayOrderQueryRequest" />
+  </wsdl:message>
+  <wsdl:message name="gatewayOrderQueryResponse">
+    <wsdl:part name="gatewayOrderQueryReturn" type="tns1:GatewayOrderQueryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GatewayOrderQuery">
+    <wsdl:operation name="gatewayOrderQuery" parameterOrder="request">
+      <wsdl:input name="gatewayOrderQueryRequest" message="impl:gatewayOrderQueryRequest" />
+      <wsdl:output name="gatewayOrderQueryResponse" message="impl:gatewayOrderQueryResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="gatewayOrderQuerySoapBinding" type="impl:GatewayOrderQuery">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="gatewayOrderQuery">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="gatewayOrderQueryRequest">
+        <wsdlsoap:body use="encoded" namespace="http://api.seashell.bill99.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="gatewayOrderQueryResponse">
+        <wsdlsoap:body use="encoded" namespace="http://www.99bill.com/gatewayapi/services/gatewayOrderQuery" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GatewayOrderQueryService">
+    <wsdl:port name="gatewayOrderQuery" binding="impl:gatewayOrderQuerySoapBinding">
+      <wsdlsoap:address location="https://www.99bill.com/gatewayapi/services/gatewayOrderQuery" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
