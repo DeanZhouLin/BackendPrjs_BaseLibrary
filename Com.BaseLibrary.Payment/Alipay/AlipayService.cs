@@ -1,9 +1,4 @@
-﻿using System.Web;
-using System.Text;
-using System.IO;
-using System.Net;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml;
 
 namespace Com.Alipay

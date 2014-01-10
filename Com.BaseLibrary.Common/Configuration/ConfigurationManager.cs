@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Web;
-using System.Web.Caching;
-
-using Com.BaseLibrary.Logging;
 using Com.BaseLibrary.Utility;
 using Com.BaseLibrary.Caching;
 

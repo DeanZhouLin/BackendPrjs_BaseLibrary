@@ -10,7 +10,6 @@
  * 
 *****************************************************************/
 
-using System;
 using System.Data;
 using System.Collections.Generic;
 using System.IO;
@@ -18,11 +17,9 @@ using System.Web;
 
 
 using Com.BaseLibrary.Entity;
-using Com.BaseLibrary.Utility;
 using Com.BaseLibrary.XmlAccess.Configuration;
 
 using Com.BaseLibrary.Caching;
-using System.Web.Caching;
 
 namespace Com.BaseLibrary.XmlAccess
 {

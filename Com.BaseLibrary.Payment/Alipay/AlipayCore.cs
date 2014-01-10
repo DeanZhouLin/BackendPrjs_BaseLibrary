@@ -2,10 +2,8 @@
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
-using System.Net;
 using System;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace Com.Alipay
 {

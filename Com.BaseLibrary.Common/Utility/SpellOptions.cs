@@ -21,8 +21,6 @@
 * http://www.gnu.org/copyleft/gpl.html
 */
 
-using System;
-
 namespace Com.BaseLibrary.Utility
 {
 	/// <summary>

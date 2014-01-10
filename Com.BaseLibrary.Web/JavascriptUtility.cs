@@ -1,5 +1,3 @@
-using System;
-
 namespace Com.BaseLibrary.Web
 {
 	public enum StringStartedSymbol

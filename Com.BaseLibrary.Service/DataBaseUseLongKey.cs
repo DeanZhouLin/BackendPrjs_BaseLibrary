@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Collections.Generic;
-
-using Com.BaseLibrary.Data;
-
 using Com.BaseLibrary.Entity;
 using System.Data.Objects;
 using Com.BaseLibrary.Contract;

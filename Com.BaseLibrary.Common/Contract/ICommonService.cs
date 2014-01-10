@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ServiceModel;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Security.Cryptography;
-using Com.BaseLibrary.Contract;
 using Com.BaseLibrary.Utility;
-using System.Net.Mail;
 using System.ServiceModel.Web;
 using System.ServiceModel.Activation;
 

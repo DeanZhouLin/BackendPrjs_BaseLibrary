@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Configuration;
-using System;
 
 namespace Com.BaseLibrary.Logging
 {

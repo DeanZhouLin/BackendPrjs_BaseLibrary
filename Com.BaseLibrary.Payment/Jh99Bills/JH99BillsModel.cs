@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Text;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography;
-using Com.BaseLibrary.Payment.Jh99Bills;
 
 
 namespace Com.BaseLibrary.Payment.Jh99Bills

@@ -1,10 +1,4 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
 using System.Data;
-
-using Com.BaseLibrary.Entity;
-using Com.BaseLibrary.Logging;
 using Com.BaseLibrary.XmlAccess.Configuration;
 using System.Web;
 using System.IO;

@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using System.Web;
-using System.Collections.Generic;
 
 namespace Com.BaseLibrary.Web.Coockie
 {

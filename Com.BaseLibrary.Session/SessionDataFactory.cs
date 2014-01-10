@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Memcached.ClientLibrary;
-using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Utility;
 
 namespace Com.BaseLibrary.Session

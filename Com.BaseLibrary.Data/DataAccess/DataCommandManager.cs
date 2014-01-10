@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using System.Linq;
 using System.Data;
 using System.Text.RegularExpressions;
 
 using Com.BaseLibrary.Utility;
 using Com.BaseLibrary.Logging;
-using Com.BaseLibrary.Data;
 using Com.BaseLibrary.DataAccess.Configuration;
 
 namespace Com.BaseLibrary.DataAccess

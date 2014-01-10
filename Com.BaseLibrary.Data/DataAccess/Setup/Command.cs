@@ -1,9 +1,6 @@
-using System;
-using System.Data.Common;
 using System.Xml.Serialization;
 using System.Data;
 using System.ComponentModel;
-using Com.BaseLibrary.Collection;
 using System.Collections.Generic;
 
 namespace Com.BaseLibrary.DataAccess.Configuration

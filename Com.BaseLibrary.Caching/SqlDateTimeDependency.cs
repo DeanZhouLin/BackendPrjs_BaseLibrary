@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using System.Data;
-using Com.BaseLibrary.Utility;
 using Com.BaseLibrary.Data;
 
 namespace Com.BaseLibrary.Caching

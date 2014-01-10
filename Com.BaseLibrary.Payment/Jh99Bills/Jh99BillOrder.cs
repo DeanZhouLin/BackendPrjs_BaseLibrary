@@ -3,11 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Net;
-using System.IO;
-using System.Xml;
 using Com.BaseLibrary.Payment.Jh99BillsOrderQuery;
-using Com.BaseLibrary.Logging;
 
 namespace Com.BaseLibrary.Payment.Jh99Bills
 {

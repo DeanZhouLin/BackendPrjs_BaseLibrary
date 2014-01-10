@@ -1,6 +1,5 @@
 using System;
 using System.Xml.Serialization;
-using System.Collections;
 using Com.BaseLibrary.Collection;
 using Com.BaseLibrary.Caching;
 using Com.BaseLibrary.Utility;

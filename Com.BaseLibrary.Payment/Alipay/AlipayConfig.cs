@@ -1,10 +1,4 @@
-﻿using System.Web;
-using System.Text;
-using System.IO;
-using System.Net;
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Com.BaseLibrary.Configuration;
 
 namespace Com.Alipay

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Com.BaseLibrary.Web
+﻿namespace Com.BaseLibrary.Web
 {
 	public enum ListType
 	{

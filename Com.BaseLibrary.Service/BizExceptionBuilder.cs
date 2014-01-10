@@ -1,11 +1,7 @@
 ﻿using System;
-
-using System.Linq;
-using System.Text;
 using System.Xml;
 using System.ServiceModel;
 using System.Configuration;
-using System.Collections.Generic;
 using System.Web.Services.Protocols;
 using Com.BaseLibrary.ExceptionHandle;
 

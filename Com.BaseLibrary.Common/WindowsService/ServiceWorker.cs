@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Com.BaseLibrary.Logging;
 using System.Timers;
-using System.ComponentModel;
 
 namespace Com.BaseLibrary.Utility.WindowsService
 {

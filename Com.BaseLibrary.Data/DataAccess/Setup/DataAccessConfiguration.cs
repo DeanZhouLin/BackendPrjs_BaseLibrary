@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
-using Com.BaseLibrary.DataAccess;
 using Com.BaseLibrary.Collection;
-using Com.BaseLibrary.XmlAccess.Configuration;
 using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Utility;
 using Com.BaseLibrary.Caching;

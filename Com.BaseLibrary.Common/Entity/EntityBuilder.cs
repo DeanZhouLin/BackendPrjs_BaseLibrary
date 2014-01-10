@@ -15,7 +15,6 @@ using System.Data;
 using System.Collections.Generic;
 using System.Reflection;
 using Com.BaseLibrary.Utility;
-using Com.BaseLibrary.Entity;
 
 namespace Com.BaseLibrary.Entity
 {

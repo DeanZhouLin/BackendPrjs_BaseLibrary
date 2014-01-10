@@ -1,6 +1,4 @@
 using System;
-using System.Configuration;
-using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Com.BaseLibrary.Utility

@@ -1,4 +1,3 @@
-using System;
 using System.Web;
 
 namespace Com.BaseLibrary.Web.Coockie

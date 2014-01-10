@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
 using Microsoft.Practices.EnterpriseLibrary.Caching.BackingStoreImplementations;
-using Microsoft.Practices.EnterpriseLibrary.Caching.Instrumentation;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Configuration;
 

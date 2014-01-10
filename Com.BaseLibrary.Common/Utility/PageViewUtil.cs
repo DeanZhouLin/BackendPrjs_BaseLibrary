@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Net.Mail;
 using System.Net;
 using System.Collections.Generic;
-
-using System.Xml.Serialization;
-using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Common.Cryptography;
-using Com.BaseLibrary.Logging;
-using System.ServiceModel;
 using Com.BaseLibrary.Contract;
 using System.Web;
 using System.Security.Cryptography;
