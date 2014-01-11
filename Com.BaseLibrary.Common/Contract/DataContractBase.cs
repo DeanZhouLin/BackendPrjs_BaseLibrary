@@ -85,5 +85,11 @@ namespace Com.BaseLibrary.Contract
         {
             return GetValue(propertyName) as T;
         }
+
+        public object GetValue(string propertyName,object defaultValue)
+        {
+            var res = GetValue(propertyName);
+            return res ?? defaultValue;
+        }
     }
 }
