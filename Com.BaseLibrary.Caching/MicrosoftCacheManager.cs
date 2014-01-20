@@ -18,7 +18,7 @@ namespace Com.BaseLibrary.Caching
 		private class CacheItemRefreshAction : ICacheItemRefreshAction
 		{
 
-			private CacheObjectRemovedCallBack m_RemovedCallBack;
+			private readonly CacheObjectRemovedCallBack m_RemovedCallBack;
 
 			internal CacheItemRefreshAction(CacheObjectRemovedCallBack callBack)
 			{
@@ -82,7 +82,7 @@ namespace Com.BaseLibrary.Caching
 				Microsoft.Practices.EnterpriseLibrary.Caching.CacheManagerFactory cacheFactory = new Microsoft.Practices.EnterpriseLibrary.Caching.CacheManagerFactory(internalConfigurationSource);
 				cacheManager = cacheFactory.CreateDefault();
 			}
-			this.s_CacheManager = cacheManager;
+			s_CacheManager = cacheManager;
 		}
 
 		public MicrosoftCacheManager(string cacheName)
@@ -160,12 +160,12 @@ namespace Com.BaseLibrary.Caching
 
 			if (obj is TimeSpan)
 			{
-				return new Microsoft.Practices.EnterpriseLibrary.Caching.Expirations.SlidingTime((TimeSpan)obj);
+				return new SlidingTime((TimeSpan)obj);
 			}
 
 			if (obj is string)
 			{
-				return new Microsoft.Practices.EnterpriseLibrary.Caching.Expirations.FileDependency(obj.ToString());
+				return new FileDependency(obj.ToString());
 			}
 
 			if (obj is SqlServerUtcDateTime)
@@ -174,7 +174,7 @@ namespace Com.BaseLibrary.Caching
 				return new SqlDateTimeDependency(ss.ConnectionString, ss.SQL, ss.CommandType);
 			}
 
-			return new Microsoft.Practices.EnterpriseLibrary.Caching.Expirations.NeverExpired();
+			return new NeverExpired();
 		}
 
 		private CacheItemPriority GetPriority(CacheObjectPriority priority)

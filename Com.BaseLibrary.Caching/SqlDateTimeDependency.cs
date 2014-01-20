@@ -9,7 +9,7 @@ namespace Com.BaseLibrary.Caching
     public class SqlDateTimeDependency : ICacheItemExpiration
     {
         // Fields
-        private DateTime lastModifiedTime;
+        private readonly DateTime lastModifiedTime;
 
         public string ConnectionString { get; set; }
         public string SQL { get; set; }

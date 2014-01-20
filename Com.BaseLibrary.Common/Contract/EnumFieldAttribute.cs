@@ -9,13 +9,13 @@ namespace Com.BaseLibrary.Contract
 
 		public EnumDescriptionAttribute(string text, string value)
 		{
-			this.Text = text;
-			this.Value = value;
+			Text = text;
+			Value = value;
 		}
         public EnumDescriptionAttribute(string text)
         {
-            this.Text = text;
-            this.Value = text;
+            Text = text;
+            Value = text;
         }
 	}
 }

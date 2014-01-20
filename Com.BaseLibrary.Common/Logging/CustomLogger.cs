@@ -31,7 +31,7 @@ namespace Com.BaseLibrary.Logging
 				return connectionString;
 			}
 		}
-		private bool dbErrorFlag = false;
+		private bool dbErrorFlag;
 		private static readonly object synObject = new object();
 		public CustomLogger()
 		{
