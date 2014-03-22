@@ -17,11 +17,11 @@ namespace Com.BaseLibrary.Caching
     {
         private const string CACHE_TYPE_NAME = "ImplCacheManager";
 
-        private static ICacheManager m_SingleCacheManager = null;
+        private static ICacheManager m_SingleCacheManager;
         private static readonly object m_SynObj = new object();
-        private static ICacheManager m_AspNetCacheManager = null;
+        private static ICacheManager m_AspNetCacheManager;
         private static readonly object m_AspNetSynObj = new object();
-        private static ICacheManager m_MicrosoftCacheManager = null;
+        private static ICacheManager m_MicrosoftCacheManager;
         private static readonly object m_MiscrosoftSynObj = new object();
 
         /// <summary>

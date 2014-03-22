@@ -21,11 +21,6 @@ namespace Com.BaseLibrary.Caching
             }
         }
 
-        public AspNetCacheManager()
-        {
-
-        }
-
         #region ICacheManager Members
 
 
@@ -39,11 +34,7 @@ namespace Com.BaseLibrary.Caching
             if (callBack != null)
             {
                 onCallBack =
-                    delegate(string ikey, Object ivalue, CacheItemRemovedReason reason)
-                    {
-                        callBack(ikey, ivalue, GetReason(reason));
-                    }
-                    ;
+                    (ikey, ivalue, reason) => callBack(ikey, ivalue, GetReason(reason));
             }
 
             if (expirations != null && expirations.Length > 0)
