@@ -80,6 +80,24 @@ namespace Com.BaseLibrary.Contract
             }
         }
 
+
+        public string GetShowMessage(string successMsg, Action successAction = null, Action failedAction = null, GetErrorInfoType getErrorInfoType = GetErrorInfoType.Normal)
+        {
+            if (HasError)
+            {
+                if (failedAction != null)
+                {
+                    failedAction();
+                }
+                return GetError(getErrorInfoType);
+            }
+            if (successAction != null)
+            {
+                successAction();
+            }
+            return successMsg;
+        }
+
         /// <summary>
         /// 清空错误信息缓存
         /// </summary>
@@ -88,10 +106,31 @@ namespace Com.BaseLibrary.Contract
             ErrorInfo.Clear();
         }
 
-        public static string GetQuickError(string errror, string header = "操作完成", GetErrorInfoType getErrorInfoType = GetErrorInfoType.Normal)
+        public static string GetQuickError(Exception ex, string header = "操作完成", GetErrorInfoType getErrorInfoType = GetErrorInfoType.Normal)
+        {
+            if (ex == null)
+            {
+                return string.Empty;
+            }
+
+            StringBuilder sb = new StringBuilder(ex.Message);
+
+            if (ex.Message.StartsWith("系统发生错误") && ex.InnerException != null)
+            {
+                string str = ex.InnerException == null ? "" : ex.InnerException.ToString();
+                string shortStr = string.IsNullOrEmpty(str) ? "" : str.Substring(0, Math.Min(100, str.Length));
+                sb.Append("-----").Append(shortStr).Append("...");
+            }
+
+            ErrorInfoBase eb = new ErrorInfoBase { HeaderStr = header };
+            eb.AddError(sb.ToString());
+            return eb.GetError(getErrorInfoType);
+        }
+
+        public static string GetQuickError(string error, string header = "操作完成", GetErrorInfoType getErrorInfoType = GetErrorInfoType.Normal)
         {
             ErrorInfoBase eb = new ErrorInfoBase { HeaderStr = header };
-            eb.AddError(errror);
+            eb.AddError(error);
             return eb.GetError(getErrorInfoType);
         }
 
@@ -184,6 +223,7 @@ namespace Com.BaseLibrary.Contract
             }
             return sb.ToString();
         }
+
 
         #endregion
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 
 
@@ -312,6 +313,11 @@ namespace Com.BaseLibrary.Utility
                 dt.Rows.Add(row);
             }
             return dt;
+        }
+
+        public static string JoinToString<T>(this List<T> list, string separator = ",")
+        {
+            return string.Join(separator, list);
         }
     }
 }

@@ -40,6 +40,9 @@ numrange					验证数字范围,必须同时有number验证。	numrange:[min]~[m
 
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Web.UI.WebControls;
 
 namespace Com.BaseLibrary.Utility

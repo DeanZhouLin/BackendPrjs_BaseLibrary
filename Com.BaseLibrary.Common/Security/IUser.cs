@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Com.BaseLibrary.Common.Logging;
 using Com.BaseLibrary.Contract;
 using Com.BaseLibrary.Entity;
 
@@ -239,42 +240,60 @@ namespace Com.BaseLibrary.Common.Security
 
         private int GetUpperStepCount(AuditWorkFlowResource keyResource)
         {
-            if (AuthedAuditWorkFlowResources == null || AuthedAuditWorkFlowResources.Count == 0 || keyResource == null)
+            try
             {
+                if (AuthedAuditWorkFlowResources == null || AuthedAuditWorkFlowResources.Count == 0 || keyResource == null)
+                {
+                    return -1;
+                }
+                if (TotalAuditWorkFlowResources == null || TotalAuditWorkFlowResources.Count == 0)
+                {
+                    return -1;
+                }
+                AuditWorkFlowResource tempResource = keyResource;
+                int upperCount = 0;
+                while (tempResource != null && tempResource.ParentGroupID != 0)
+                {
+                    upperCount++;
+                    tempResource = TotalAuditWorkFlowResources.Find(c => c.GroupID == tempResource.ParentGroupID);
+                }
+                return upperCount;
+            }
+            catch (Exception ex)
+            {
+                var message = ControlResouce == null ? "ControlResouce为空" : ControlResouce.ID.ToString();
+                LogHelper.CustomInfo(message + "|" + ex);
                 return -1;
             }
-            if (TotalAuditWorkFlowResources == null || TotalAuditWorkFlowResources.Count == 0)
-            {
-                return -1;
-            }
-            AuditWorkFlowResource tempResource = keyResource;
-            int upperCount = 0;
-            while (tempResource.ParentGroupID != 0)
-            {
-                upperCount++;
-                tempResource = TotalAuditWorkFlowResources.Find(c => c.GroupID == tempResource.ParentGroupID);
-            }
-            return upperCount;
         }
 
         private int GetLowerStepCount(AuditWorkFlowResource keyResource)
         {
-            if (AuthedAuditWorkFlowResources == null || AuthedAuditWorkFlowResources.Count == 0 || keyResource == null)
+            try
             {
+                if (AuthedAuditWorkFlowResources == null || AuthedAuditWorkFlowResources.Count == 0 || keyResource == null)
+                {
+                    return -1;
+                }
+                if (TotalAuditWorkFlowResources == null || TotalAuditWorkFlowResources.Count == 0)
+                {
+                    return -1;
+                }
+                int lowerCount = 0;
+                AuditWorkFlowResource tempResource = TotalAuditWorkFlowResources.Find(c => c.ParentGroupID == keyResource.GroupID);
+                while (tempResource != null)
+                {
+                    lowerCount++;
+                    tempResource = TotalAuditWorkFlowResources.Find(c => c.ParentGroupID == tempResource.GroupID);
+                }
+                return lowerCount;
+            }
+            catch (Exception ex)
+            {
+                var message = ControlResouce == null ? "ControlResouce为空" : ControlResouce.ID.ToString();
+                LogHelper.CustomInfo(message + "|" + ex);
                 return -1;
             }
-            if (TotalAuditWorkFlowResources == null || TotalAuditWorkFlowResources.Count == 0)
-            {
-                return -1;
-            }
-            int lowerCount = 0;
-            AuditWorkFlowResource tempResource = TotalAuditWorkFlowResources.Find(c => c.ParentGroupID == keyResource.GroupID);
-            while (tempResource != null)
-            {
-                lowerCount++;
-                tempResource = TotalAuditWorkFlowResources.Find(c => c.ParentGroupID == tempResource.GroupID);
-            }
-            return lowerCount;
         }
 
     }

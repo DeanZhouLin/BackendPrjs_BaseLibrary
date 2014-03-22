@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Com.BaseLibrary.Logging;
+using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Utility;
 using System.Data.SqlClient;
 

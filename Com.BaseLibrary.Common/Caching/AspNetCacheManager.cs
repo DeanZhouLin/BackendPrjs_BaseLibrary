@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web;
+using System.Text;
 using System.Web.Caching;
+using System.Collections.Generic;
 
 
 namespace Com.BaseLibrary.Caching

@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.IO;
 
 namespace Com.BaseLibrary.Utility

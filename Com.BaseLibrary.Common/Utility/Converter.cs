@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Com.BaseLibrary.Utility
@@ -106,6 +107,28 @@ namespace Com.BaseLibrary.Utility
                 sb.AppendFormat("{0}{1}", p[i], p_2);
             }
             return sb.ToString();
+        }
+    }
+
+    public static class CoreFormater
+    {
+        public static string DateTimeFormat(this object obj)
+        {
+            if (obj == null)
+            {
+                return null;
+            }
+            DateTime dt;
+            if (DateTime.TryParse(obj.ToString(), out dt))
+            {
+                return dt.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            return null;
+        }
+
+        public static string DateTimeToString(this DateTime dt)
+        {
+            return string.Format("{0:yyyyMMddHHmmssffff}", dt);
         }
     }
 }

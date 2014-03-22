@@ -27,6 +27,11 @@ namespace Com.BaseLibrary.Utility
 			return System.Configuration.ConfigurationManager.AppSettings[appSection];
 		}
 
+        //public static string GetReflashedAppSetting(string appSection)
+        //{
+        //    System.Configuration.ConfigurationManager.RefreshSection(appSection);
+        //    return GetAppSetting(appSection);
+        //}
 		/// <summary>
 		/// 根据ApSection获取配置文件的完整路径
 		/// </summary>

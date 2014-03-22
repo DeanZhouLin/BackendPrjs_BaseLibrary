@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Utility;
+using Com.BaseLibrary.Caching;
 using Com.BaseLibrary.Collection;
 
 namespace Com.BaseLibrary.Service

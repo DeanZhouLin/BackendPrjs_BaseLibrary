@@ -1,4 +1,9 @@
-﻿namespace Com.BaseLibrary.Caching
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Com.BaseLibrary.Caching
 {
     /// <summary>
     /// 缓存对象的优先级

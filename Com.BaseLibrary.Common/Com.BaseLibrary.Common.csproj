@@ -57,6 +57,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\..\HtmlAgilityPackCore\HtmlAgilityPackHelperLib\Ref\V1.4.6\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\ReffDll\Json\Newtonsoft.Json.dll</HintPath>
@@ -82,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncRegexHelper\AsynchronousRegex.cs" />
     <Compile Include="Caching\AspNetCacheManager.cs" />
     <Compile Include="Caching\CacheManagerFactory.cs" />
     <Compile Include="Caching\CacheObjectPriority.cs" />
@@ -126,6 +130,12 @@
     <Compile Include="Entity\ReferencedEntityAttribute.cs" />
     <Compile Include="ExceptionHandle\ExceptionBase.cs" />
     <Compile Include="ExceptionHandle\ExceptionConfiguration.cs" />
+    <Compile Include="HttpCore\BaseControl.cs" />
+    <Compile Include="HttpCore\Controls\QuNarFlightControl\QuNarFlightControl.cs" />
+    <Compile Include="HttpCore\Controls\QuNarFlightControl\QuNarFlightEntity.cs" />
+    <Compile Include="HttpCore\Controls\CLVideoListControl\CLVideoListControl.cs" />
+    <Compile Include="HttpCore\Controls\CLVideoListControl\CLVideoListEntity.cs" />
+    <Compile Include="HttpCore\HttpHelper.cs" />
     <Compile Include="Logging\CustomLogger.cs">
       <SubType>Code</SubType>
     </Compile>

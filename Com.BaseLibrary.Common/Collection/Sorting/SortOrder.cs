@@ -10,6 +10,7 @@
  * 
 *****************************************************************/
 
+using System;
 using System.Xml.Serialization;
 
 namespace Com.BaseLibrary.Collection.Sorting

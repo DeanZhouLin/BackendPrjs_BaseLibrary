@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
@@ -44,7 +46,32 @@ namespace Com.BaseLibrary.Utility
 
         }
 
-     
+		public static string GetRequestContent(string url, Encoding encoding)
+		{
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+			//request.Method = "GET";
+			////request.ContentType = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+			//request.AllowAutoRedirect = false;
+			//request.CookieContainer = new CookieContainer();
+			//request.KeepAlive = true;
+			////request.Headers.Add("Cookie", string.Empty);
+			////Stream stream = request.GetRequestStream();
+
+			//request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+			//request.Host = "tcc.taobao.com";
+			//request.CookieContainer = new CookieContainer();
+			//request.CookieContainer.Add(new Uri("http://tcc.taobao.com"),new CookieCollection { new Cookie("cookie2", "4596ea46a36f130ca2cd1c8b1a63a5dd"), new Cookie("t", "76d8dd73ea5bcf8359fdba58da84d9b2"), new Cookie("v", "0") });
+			//request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1622.7 Safari/537.36";
+
+			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+			{
+				using (StreamReader stream = new StreamReader(response.GetResponseStream(), encoding))
+				{
+					return stream.ReadToEnd();
+				}
+			}
+
+		}
          
             public static bool IsSecureSite(string url)
             {

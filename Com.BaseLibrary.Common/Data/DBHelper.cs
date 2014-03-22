@@ -1,4 +1,12 @@
-﻿namespace Com.BaseLibrary.Data
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using Com.BaseLibrary.Utility;
+using System.Data.SqlClient;
+
+namespace Com.BaseLibrary.Data
 {
 	//public static class DBHelper
 	//{

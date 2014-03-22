@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Com.BaseLibrary.Logging;
 using System.Xml.Serialization;
 using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Collection;
 using System.Reflection;
 using System.IO;
 using System.ComponentModel;
+using Jufine.AssemblyLoad;
+using System.Timers;
 
 namespace Com.BaseLibrary.Utility.WindowsService
 {
@@ -69,6 +75,21 @@ namespace Com.BaseLibrary.Utility.WindowsService
 
     public partial class WorkerSetup : IKeyedItem<string>, INotifyPropertyChanged
     {
+        private bool _flag;
+        [XmlAttribute("flag")]
+        public bool Flag 
+        {
+            get
+            {
+                return _flag;
+            }
+
+            set
+            {
+                _flag = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Flag"));
+            }
+        }
         /// <summary>
         /// 异常信息的键
         /// </summary>
@@ -111,6 +132,7 @@ namespace Com.BaseLibrary.Utility.WindowsService
                 OnPropertyChanged(new PropertyChangedEventArgs("FilePath"));
             }
         }
+        
         private string assemblyName;
         [XmlAttribute("Assembly")]
         public string AssemblyName
@@ -186,6 +208,10 @@ namespace Com.BaseLibrary.Utility.WindowsService
         {
             get
             {
+                if (string.IsNullOrEmpty(workStatus))
+                {
+                    return string.Empty;
+                }
                 return workStatus;
             }
             set
@@ -241,7 +267,14 @@ namespace Com.BaseLibrary.Utility.WindowsService
                 {
                     onlyOnce = "多次";
                 }
-                workStatusDescription = string.Format("{0}{1}", onlyOnce, status);
+                if (Flag)
+                {
+                    workStatusDescription = string.Format("{0}{1}", onlyOnce, status);
+                }
+                else
+                {
+                    workStatusDescription = status;
+                }
                 return workStatusDescription;
             }
             set
@@ -266,40 +299,59 @@ namespace Com.BaseLibrary.Utility.WindowsService
                 OnPropertyChanged(new PropertyChangedEventArgs("WorkStatusDescription"));
             }
         }
+        private string _configFile;
+        [XmlAttribute("ConfigFile")]
+        public string ConfigFile
+        {
+            get
+            {
+                return _configFile;
+            }
+            set
+            {
+                _configFile = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ConfigFile"));
+            }
+        }
         public ServiceWorker CreateServiceWorker()
         {
             return Assembly.Load(AssemblyName).CreateInstance(WorkTypeName) as ServiceWorker;
         }
 
-        public ServiceWorker CreateServiceWorkerByFile()
-        {
-            string strServiceLibraryPath = PathUtil.GetFullFilePath(ConfigurationHelper.GetAppSetting("DLLPath"));
-            if (System.IO.Directory.Exists(strServiceLibraryPath))
-            {
-                strServiceLibraryPath = Path.Combine(strServiceLibraryPath, AssemblyName);
-                //using (FileStream stream = new FileStream(strServiceLibraryPath, FileMode.Open))
-                //{
-                //    using (MemoryStream memStream = new MemoryStream())
-                //    {
-                //        int res;
-                //        byte[] b = new byte[4096];
-                //        while ((res = stream.Read(b, 0, b.Length)) > 0)
-                //        {
-                //            memStream.Write(b, 0, b.Length);
-                //        }
-                //        Assembly asm = Assembly.Load(memStream.ToArray());
-                //        ServiceWorker serviceWorker = asm.CreateInstance(WorkTypeName) as ServiceWorker;
-                //        return serviceWorker;
-                //    }
-                //}
-                return Assembly.LoadFile(strServiceLibraryPath).CreateInstance(WorkTypeName) as ServiceWorker;
-                
-            }
 
-            return Assembly.LoadFile(strServiceLibraryPath).CreateInstance(WorkTypeName) as ServiceWorker;
+        public void DoWork(object sender, ElapsedEventArgs e)
+        {
+            //string strServiceLibraryPath = PathUtil.GetFullFilePath(ConfigurationHelper.GetAppSetting("DLLPath"));
+            //if (System.IO.Directory.Exists(strServiceLibraryPath))
+            //{
+            //    strServiceLibraryPath = Path.Combine(strServiceLibraryPath, AssemblyName);
+            //    //using (FileStream stream = new FileStream(strServiceLibraryPath, FileMode.Open))
+            //    //{
+            //    //    using (MemoryStream memStream = new MemoryStream())
+            //    //    {
+            //    //        int res;
+            //    //        byte[] b = new byte[4096];
+            //    //        while ((res = stream.Read(b, 0, b.Length)) > 0)
+            //    //        {
+            //    //            memStream.Write(b, 0, b.Length);
+            //    //        }
+            //    //        Assembly asm = Assembly.Load(memStream.ToArray());
+            //    //        ServiceWorker serviceWorker = asm.CreateInstance(WorkTypeName) as ServiceWorker;
+            //    //        return serviceWorker;
+            //    //    }
+            //    //}
+            //    Loader.InvokeMethod(WorkTypeName, "Work", new object[]{});
+            //    //return Assembly.LoadFile(strServiceLibraryPath).CreateInstance(WorkTypeName) as ServiceWorker;
+                
+            //}
+
+            //return Assembly.LoadFile(strServiceLibraryPath).CreateInstance(WorkTypeName) as ServiceWorker;
+            Handler(WorkTypeName, "CommonWork", new object[] { Arguments,Name});
         }
 
 
+        [XmlIgnore]
+        public InvokeHandler Handler { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -311,6 +363,6 @@ namespace Com.BaseLibrary.Utility.WindowsService
             }
         }
     }
-
+    public delegate void InvokeHandler(string typeName,string methodName,object[] objectArr);
 
 }

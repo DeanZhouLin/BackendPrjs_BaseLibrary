@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Web.Caching;
 using System.Threading;
 using Com.BaseLibrary.Data;
 using System.Data;
+using Com.BaseLibrary.Configuration;
+using Com.BaseLibrary.Utility;
 
 namespace Com.BaseLibrary.Caching
 {

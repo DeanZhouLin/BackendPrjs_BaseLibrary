@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Com.BaseLibrary.Utility;
 
 namespace Com.BaseLibrary.Contract
 {
@@ -70,26 +72,83 @@ namespace Com.BaseLibrary.Contract
             return a == null ? null : a.Trim();
         }
 
-        /// <summary>
-        /// 未知类的 属性值的获取
-        /// dean（测试）
-        /// </summary>
-        /// <param name="propertyName"></param>
-        /// <returns></returns>
-        public object GetValue(string propertyName)
+    }
+
+    /// <summary>
+    /// 实体类扩展
+    /// dean 添加
+    /// </summary>
+    public static class DataContractBaseExtension
+    {
+
+        public static object GetValue(this DataContractBase currObj, string propertyName)
         {
-            return GetType().GetProperty(propertyName).GetValue(this, null);
+            return currObj.GetType().GetProperty(propertyName).GetValue(currObj, null);
         }
 
-        public T GetValue<T>(string propertyName) where T : class ,new()
+        public static object GetValue(this DataContractBase currObj, string propertyName, object nullValue)
         {
-            return GetValue(propertyName) as T;
+            return currObj.GetValue(propertyName) ?? nullValue;
         }
 
-        public object GetValue(string propertyName,object defaultValue)
+        public static T GetValue<T>(this DataContractBase currObj, string propertyName) where T : class ,new()
         {
-            var res = GetValue(propertyName);
-            return res ?? defaultValue;
+            return currObj.GetValue(propertyName) as T;
+        }
+
+        public static void SetValue(this DataContractBase currObj, string propertyName, object value)
+        {
+            currObj.GetType().GetProperty(propertyName).SetValue(currObj, value, null);
+        }
+
+        public static void BatchSetValue(this DataContractBase currObj, Dictionary<string, object> propAndValues)
+        {
+            if (propAndValues == null) return;
+
+            foreach (var pv in propAndValues)
+            {
+                currObj.SetValue(pv.Key, pv.Value);
+            }
+        }
+
+        public static void SetCreateEditInfo(this DataContractBase currObj, string currentUserName, DateTime dtNow, Dictionary<string, object> propAndValues = null)
+        {
+            currObj.BatchSetValue(new Dictionary<string, object>
+            {
+                {"CreateUser",currentUserName},
+                {"CreateDate",dtNow},
+                {"EditUser",currentUserName},
+                {"EditDate",dtNow}
+            });
+            currObj.BatchSetValue(propAndValues);
+        }
+
+        public static void SetEditInfo(this DataContractBase currObj, string currentUserName, DateTime dtNow, Dictionary<string, object> propAndValues = null)
+        {
+            currObj.BatchSetValue(new Dictionary<string, object>
+            {
+                {"EditUser",currentUserName},
+                {"EditDate",dtNow}
+            });
+            currObj.BatchSetValue(propAndValues);
+        }
+
+        public static void AddItem<T, V>(this Dictionary<T, V> sourceDic, T key, V value)
+        {
+            if (sourceDic == null)
+            {
+                throw new NullReferenceException();
+            }
+            if (sourceDic.ContainsKey(key))
+            {
+                sourceDic[key] = value;
+            }
+            else
+            {
+                sourceDic.Add(key, value);
+            }
         }
     }
+
+
 }

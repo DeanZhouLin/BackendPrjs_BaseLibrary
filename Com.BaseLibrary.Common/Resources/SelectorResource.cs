@@ -1,5 +1,14 @@
-﻿using Com.BaseLibrary.Collection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Com.BaseLibrary.Collection;
 using System.Xml.Serialization;
+using Com.BaseLibrary.Utility;
+using Com.BaseLibrary.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using Com.BaseLibrary.Data;
 
 namespace Com.BaseLibrary.Resources
 {
