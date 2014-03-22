@@ -152,6 +152,7 @@
     <Compile Include="Caching\SqlServerUtcDateTime.cs" />
     <Compile Include="Transaction\BizTransactionScope.cs" />
     <Compile Include="Utility\EmailUtil.cs" />
+    <Compile Include="Utility\EnumFlagsUtil.cs" />
     <Compile Include="Utility\ExcelUtil.cs" />
     <Compile Include="Utility\FileUtil.cs" />
     <Compile Include="Utility\HTMLUtil.cs" />
