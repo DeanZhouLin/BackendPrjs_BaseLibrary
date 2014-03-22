@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Com.BaseLibrary.Logging;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 using Com.BaseLibrary.Configuration;
 using Com.BaseLibrary.Collection;
 using System.Reflection;
-using System.IO;
 using System.ComponentModel;
-using Jufine.AssemblyLoad;
 using System.Timers;
 
 namespace Com.BaseLibrary.Utility.WindowsService
