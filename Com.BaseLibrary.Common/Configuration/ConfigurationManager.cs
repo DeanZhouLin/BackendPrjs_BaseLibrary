@@ -117,8 +117,6 @@ namespace Com.BaseLibrary.Configuration
             {
                 lock (m_SyncObject)
                 {
-                    config = CacheManager[key] as T;
-                    if (config == null)
                     {
                         string fullPath = PathUtil.GetFullFilePath(configFile);
                         try
@@ -128,9 +126,6 @@ namespace Com.BaseLibrary.Configuration
                         }
                         catch (Exception e)
                         {
-                            //Logger.CurrentLogger.DoWrite("CommonLibrary", "Load config file failed", 0, 
-                            //    string.Format(LoadFileFailedMessage, fullPath, typeof(T), e.ToString()));
-
                             throw new LoadFileException(typeof(T).Name, configFile, e);
                         }
                     }
@@ -139,24 +134,23 @@ namespace Com.BaseLibrary.Configuration
 
             return config;
         }
+
         public static void RemoveConfigurationCache(string key)
         {
-            
-            if (CacheManager.Contains(key))
+            if (!CacheManager.Contains(key)) return;
+            lock (m_SyncObject)
             {
-                lock (m_SyncObject)
+                try
                 {
-                    try
-                    {
-                        CacheManager.Remove(key);
-                    }
-                    catch
-                    {
-                        throw new Exception("RemoveConfigurationCache error");
-                    }
+                    CacheManager.Remove(key);
+                }
+                catch
+                {
+                    throw new Exception("RemoveConfigurationCache error");
                 }
             }
         }
+
         /// <summary>
         /// 从缓存中获取对象
         /// </summary>
@@ -171,11 +165,12 @@ namespace Com.BaseLibrary.Configuration
 
         public static void SaveConfiguration<T>(string configFile, T t) where T : class
         {
-            ObjectXmlSerializer.Save<T>(configFile, t);
+            ObjectXmlSerializer.Save(configFile, t);
         }
+
         public static void SaveAs<T>(string configFile, T t) where T : class
         {
-            ObjectXmlSerializer.SaveAs<T>(configFile, t);
+            ObjectXmlSerializer.SaveAs(configFile, t);
         }
     }
 }

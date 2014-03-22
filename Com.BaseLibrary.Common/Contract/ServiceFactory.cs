@@ -58,9 +58,8 @@ namespace Com.BaseLibrary.Contract
                 {
                     Assembly serviceAssebly = Assembly.Load(asseblyName);
                     Type[] types = serviceAssebly.GetTypes();
-                    for (int i = 0; i < types.Length; i++)
+                    foreach (Type type in types)
                     {
-                        Type type = types[i];
                         if (type.IsInterface)
                         {
                             continue;
@@ -100,19 +99,19 @@ namespace Com.BaseLibrary.Contract
         public static T CreateServiceClient<T>(string serviceUrl)
             where T : class
         {
-            BasicHttpBinding binding = new BasicHttpBinding();
-            binding.ReaderQuotas.MaxStringContentLength = 81920000;
+            BasicHttpBinding binding = new BasicHttpBinding {ReaderQuotas = {MaxStringContentLength = 81920000}};
 
             EndpointAddress address = new EndpointAddress(serviceUrl);
             ChannelFactory<T> factory = new ChannelFactory<T>(binding, address);
             T t = factory.CreateChannel();
             return t;
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="serviceUrl"></param>
+        /// <param name="endpointConfigurationName"></param>
         /// <returns></returns>
         public static T CreateServiceClient1<T>(string endpointConfigurationName)
             where T : class
@@ -132,7 +131,7 @@ namespace Com.BaseLibrary.Contract
 
     public class ServiceHostGroup
     {
-        static List<ServiceHost> _hosts = new List<ServiceHost>();
+        static readonly List<ServiceHost> _hosts = new List<ServiceHost>();
         private static void OpenHost(Type t)
         {
             ServiceHost hst = new ServiceHost(t);

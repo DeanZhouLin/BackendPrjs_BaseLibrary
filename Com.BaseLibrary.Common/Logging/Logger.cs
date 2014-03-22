@@ -24,7 +24,7 @@ namespace Com.BaseLibrary.Logging
         public abstract void WriteLogLine(string message);
 
         private const string LOGGER_TYPE_NAME = "ImplLogger";
-        private static Logger m_SingleLogger = null;
+        private static Logger m_SingleLogger;
         private static readonly object m_SynObj = new object();
 
         /// <summary>

@@ -228,9 +228,9 @@ namespace Com.BaseLibrary.Utility
 			return language;
 		}
 
-		private static readonly bool IgnoreLANVisitor = false;
-		private static readonly bool HasIgnoreIPList = false;
-		private static readonly List<string> IgnoreIPList = null;
+		private static readonly bool IgnoreLANVisitor;
+		private static readonly bool HasIgnoreIPList;
+		private static readonly List<string> IgnoreIPList;
 
 		static PageViewUtil()
 		{
